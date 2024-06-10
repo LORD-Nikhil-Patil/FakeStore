@@ -1,20 +1,19 @@
 import React, {useEffect} from "react";
-import Header from "../header";
+import {useAppDispatch, useAppSelector } from "../../store"
+import { fetchProductList } from "./actions"
 import { DropDownSelect } from "../../components/dropdown-select";
 import { ProductList } from "../../components/productList";
-import axios from "../../api";
 
 const MainLayout = () => {
     
-    useEffect(() => {
-        axios.get('/products')
-          .then(response => {
-            console.log({ data: response });
-          });
-      }, [])
+    const state = useAppSelector((state) => state.productList);
+    const dispatch = useAppDispatch();
 
+    useEffect(()=>{
+     dispatch(fetchProductList())
+    },[])
+   console.log(state)
     return (<>
-        <Header />
         <main className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
             <div className="flex justify-between ">
                 <button className='flex items-center p-4 bg-slate-200'>

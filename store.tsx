@@ -1,7 +1,14 @@
-import { configureStore, Tuple  } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux'
 
-const store = configureStore({ reducer: rootReducer,   middleware: () => new Tuple(),})
+import productSlice from "./src/mainLayout/reducer"
+
+const store = configureStore({
+    reducer: {
+        productList: productSlice.reducer
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+})
 
 export default store;
 
@@ -9,3 +16,5 @@ export default store;
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
+export const useAppSelector = useSelector.withTypes<RootState>()
