@@ -1,17 +1,20 @@
+import { memo } from "react";
 import { DropDownSelect } from "../../components/dropdown-select";
 import { ProductList } from "../../components/productList";
 
 import {useProductList} from "./hooks";
 
 const MainLayout = () => {
-    
+
     const {
         products,
-        
-        sortProductList
-        
+        searchedProduct,
+        categorys,
+        category,
+        sortProductList,
+        headleCateagrySelect
     } = useProductList();
-
+     console.log("main layout", searchedProduct)
     return (<>
         <main className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
             <div className="flex justify-between ">
@@ -21,16 +24,13 @@ const MainLayout = () => {
                     </span>
                 </button>
                 <div className='flex '>
-                    <DropDownSelect />
-                    <DropDownSelect />
+                    <DropDownSelect selected={category} options={categorys} handleSelect={headleCateagrySelect}/>
                 </div>
             </div>
-
-            <ProductList products={products} />
-
+           {searchedProduct.length === 0 ? <ProductList products={products} /> : <ProductList products={searchedProduct} />}
         </main>
     </>)
 }
 
 
-export default MainLayout;
+export default memo(MainLayout);
