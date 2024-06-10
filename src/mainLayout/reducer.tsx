@@ -6,6 +6,7 @@ import { Item } from "./types";
   interface productsListState {
     status: 'idle' | 'loading';
     data: Item[];
+    searchData: Item[];
     error: string | null;
   }
 
@@ -17,6 +18,7 @@ const productsInitialState: ProductState = {
     productList: {
       status: "idle",
       data: [],
+      searchData: [],
       error: null,
     },
   }
@@ -25,13 +27,23 @@ const productsInitialState: ProductState = {
   const productSlice = createSlice({
     name: "user",
     initialState: productsInitialState,
-    reducers: {},
+    reducers: {
+      filterData(state, action: PayloadAction<Item[]>){
+        state.productList = {
+          status: 'idle',
+          data: state.productList.data,
+          searchData: action.payload,
+          error: null,
+        };
+      }
+    },
     extraReducers: (builder) => {
         builder
           .addCase(fetchProductListAction.pending, (state) => {
             state.productList = {
               status: 'loading',
               data: [],
+              searchData: [],
               error: null,
             };
           })
@@ -39,6 +51,7 @@ const productsInitialState: ProductState = {
             state.productList = {
               status: 'idle',
               data: action.payload,
+              searchData: [],
               error: null,
             };
           })
@@ -46,6 +59,7 @@ const productsInitialState: ProductState = {
             state.productList = {
               status: 'idle',
               data: [],
+              searchData: [],
               error: action.payload || 'Unknown error',
             };
           });
