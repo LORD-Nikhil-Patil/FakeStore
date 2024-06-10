@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction  } from "@reduxjs/toolkit";
 
-import {fetchProductList} from "./actions";
+import {fetchProductListAction} from "./actions";
 import { Item } from "./types";
 
   interface productsListState {
@@ -28,21 +28,21 @@ const productsInitialState: ProductState = {
     reducers: {},
     extraReducers: (builder) => {
         builder
-          .addCase(fetchProductList.pending, (state) => {
+          .addCase(fetchProductListAction.pending, (state) => {
             state.productList = {
               status: 'loading',
               data: [],
               error: null,
             };
           })
-          .addCase(fetchProductList.fulfilled, (state, action: PayloadAction<Item[]>) => {
+          .addCase(fetchProductListAction.fulfilled, (state, action: PayloadAction<Item[]>) => {
             state.productList = {
               status: 'idle',
               data: action.payload,
               error: null,
             };
           })
-          .addCase(fetchProductList.rejected, (state, action: PayloadAction<string | undefined>) => {
+          .addCase(fetchProductListAction.rejected, (state, action: PayloadAction<string | undefined>) => {
             state.productList = {
               status: 'idle',
               data: [],
