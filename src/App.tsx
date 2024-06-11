@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom';
 
-import MainLayout from "./mainLayout"
 import Header from './header';
-
+import MainLayout from "./mainLayout"
+import ProductDetails from "./productDetail"
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<MainLayout />} />
+        <Route path='product/:id' element={<ProductDetails/>} /> 
       </Routes>
     </>
   )

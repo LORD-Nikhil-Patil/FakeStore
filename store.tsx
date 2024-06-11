@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
-import productSlice from "./src/mainLayout/reducer"
+import productSlice from "./src/mainLayout/reducer";
+import productDetailSlice from "./src/productDetail/reducer";
 
 const store = configureStore({
     reducer: {
-        productList: productSlice.reducer
+        productList: productSlice.reducer,
+        productDetailSlice: productDetailSlice.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })

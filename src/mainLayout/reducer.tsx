@@ -25,7 +25,7 @@ const productsInitialState: ProductState = {
 
 
   const productSlice = createSlice({
-    name: "user",
+    name: "ProductList",
     initialState: productsInitialState,
     reducers: {
       filterData(state, action: PayloadAction<Item[]>){

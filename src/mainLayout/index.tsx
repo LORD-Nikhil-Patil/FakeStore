@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import { DropDownSelect } from "../../components/dropdown-select";
 import { ProductList } from "../../components/productList";
 
@@ -12,9 +13,9 @@ const MainLayout = () => {
         categorys,
         category,
         sortProductList,
-        headleCateagrySelect
+        headleCateagrySelect,
+        handleProductDetail
     } = useProductList();
-     console.log("main layout", searchedProduct)
     return (<>
         <main className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
             <div className="flex justify-between ">
@@ -27,7 +28,7 @@ const MainLayout = () => {
                     <DropDownSelect selected={category} options={categorys} handleSelect={headleCateagrySelect}/>
                 </div>
             </div>
-           {searchedProduct.length === 0 ? <ProductList products={products} /> : <ProductList products={searchedProduct} />}
+           {searchedProduct.length === 0 ? <ProductList products={products} handleProductDetail={handleProductDetail}/> : <ProductList products={searchedProduct} handleProductDetail={handleProductDetail} />}
         </main>
     </>)
 }

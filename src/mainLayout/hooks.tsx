@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { fetchProductListAction, sortProductListAction, searchByCategoryAction } from "./actions"
 import { useAppDispatch, useAppSelector, RootState } from "../../store"
 import { Item } from "./types"
 
 export const useProductList = () => {
+
+    const navigate = useNavigate();
+
 
     const dispatch = useAppDispatch();
     const products: Item[] = useAppSelector((state: RootState) => state.productList.productList.data);
@@ -65,13 +70,18 @@ export const useProductList = () => {
         }
         dispatch(searchByCategoryAction(params))
     }, [])
+
+    const handleProductDetail = useCallback((id: Number) => {
+        navigate(`product/${id}`)
+    }, [])
     return {
         products,
         searchedProduct,
         categorys,
         category,
         sortProductList,
-        headleCateagrySelect
+        headleCateagrySelect,
+        handleProductDetail
     }
 }
 
