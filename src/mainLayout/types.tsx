@@ -12,3 +12,14 @@ export interface Item {
     image: string;
     rating: Rating;
   }
+
+  export interface cartProduct {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: Rating;
+    quantity: number;
+  }

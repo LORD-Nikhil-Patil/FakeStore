@@ -4,7 +4,7 @@ import {fetchProductListAction} from "./actions";
 import { Item } from "./types";
 
   interface productsListState {
-    status: 'idle' | 'loading';
+    status: true | false;
     data: Item[];
     searchData: Item[];
     error: string | null;
@@ -16,7 +16,7 @@ import { Item } from "./types";
 
 const productsInitialState: ProductState = {
     productList: {
-      status: "idle",
+      status: true,
       data: [],
       searchData: [],
       error: null,
@@ -30,7 +30,7 @@ const productsInitialState: ProductState = {
     reducers: {
       filterData(state, action: PayloadAction<Item[]>){
         state.productList = {
-          status: 'idle',
+          status: false,
           data: state.productList.data,
           searchData: action.payload,
           error: null,
@@ -41,7 +41,7 @@ const productsInitialState: ProductState = {
         builder
           .addCase(fetchProductListAction.pending, (state) => {
             state.productList = {
-              status: 'loading',
+              status: true,
               data: [],
               searchData: [],
               error: null,
@@ -49,7 +49,7 @@ const productsInitialState: ProductState = {
           })
           .addCase(fetchProductListAction.fulfilled, (state, action: PayloadAction<Item[]>) => {
             state.productList = {
-              status: 'idle',
+              status: false,
               data: action.payload,
               searchData: [],
               error: null,
@@ -57,7 +57,7 @@ const productsInitialState: ProductState = {
           })
           .addCase(fetchProductListAction.rejected, (state, action: PayloadAction<string | undefined>) => {
             state.productList = {
-              status: 'idle',
+              status: false,
               data: [],
               searchData: [],
               error: action.payload || 'Unknown error',

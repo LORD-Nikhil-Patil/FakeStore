@@ -4,7 +4,7 @@ import {fetchProductDetailAction} from "./action";
 import { Item } from "./types";
 
 interface productsDetailState {
-    status: 'idle' | 'loading';
+    status: true | false;
     data: Item | null;
     error: string | null;
   }
@@ -15,7 +15,7 @@ interface productsDetailState {
 
 const productsInitialState: ProductState = {
     productDetail: {
-      status: "idle",
+      status: false,
       data: null,
       error: null,
     },
@@ -32,21 +32,21 @@ const productsInitialState: ProductState = {
         builder
           .addCase(fetchProductDetailAction.pending, (state) => {
             state.productDetail = {
-              status: 'loading',
+              status: true,
               data: null,
               error: null,
             };
           })
           .addCase(fetchProductDetailAction.fulfilled, (state, action: PayloadAction<Item>) => {
             state.productDetail = {
-              status: 'idle',
+              status: false,
               data: action.payload,
               error: null,
             };
           })
           .addCase(fetchProductDetailAction.rejected, (state, action: PayloadAction<string | undefined>) => {
             state.productDetail = {
-              status: 'idle',
+              status: false,
               data: null,
               error: action.payload as string || 'Unknown error',
             };

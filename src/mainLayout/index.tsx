@@ -2,19 +2,20 @@ import { memo } from "react";
 
 import { DropDownSelect } from "../../components/dropdown-select";
 import { ProductList } from "../../components/productList";
-
-import {useProductList} from "./hooks";
+import { Spinner } from "../../components/spinner"
+import { useProductList } from "./hooks";
 
 const MainLayout = () => {
-
     const {
         products,
         searchedProduct,
         categorys,
         category,
+        productsListLoading,
         sortProductList,
         headleCateagrySelect,
-        handleProductDetail
+        handleProductDetail,
+        addToCart
     } = useProductList();
     return (<>
         <main className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
@@ -24,11 +25,17 @@ const MainLayout = () => {
                         sort
                     </span>
                 </button>
-                <div className='flex '>
-                    <DropDownSelect selected={category} options={categorys} handleSelect={headleCateagrySelect}/>
+                <div className='flex'>
+                    <DropDownSelect selected={category} options={categorys} handleSelect={headleCateagrySelect} />
                 </div>
             </div>
-           {searchedProduct.length === 0 ? <ProductList products={products} handleProductDetail={handleProductDetail}/> : <ProductList products={searchedProduct} handleProductDetail={handleProductDetail} />}
+            {!productsListLoading ? <ProductList
+                products={searchedProduct.length === 0 ? products : searchedProduct}
+                handleProductDetail={handleProductDetail}
+                addToCart={addToCart}
+            /> :
+                <div className="h-screen w-full	flex items-center justify-center"><Spinner /></div>
+            }
         </main>
     </>)
 }

@@ -1,12 +1,14 @@
 import React, { memo } from "react";
+
+import {Spinner} from "../../components/spinner";
 import {useProductDetail} from "./hooks";
 import StarRating from "./rating"
 const ProductDetails = () => {
 
-  const {product, addToCart, removeProduct, addProduct, quant} = useProductDetail();
+  const {product, productLoading, addToCart, removeProduct, addProduct, quant} = useProductDetail();
 
     return(<div className="font-sans tracking-wide max-md:mx-auto">
-        {product && <div className="bg-gradient-to-r from-gray-600 via-gray-900 to-gray-900 md:min-h-[600px] grid items-start grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-8">
+        {product && !productLoading ? <div className="bg-gradient-to-r from-gray-600 via-gray-900 to-gray-900 md:min-h-[600px] grid items-start grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-8">
           <div className="lg:col-span-3 h-full">
             <div className="p-4 relative h-full flex items-center justify-center">
               <img src={product.image} alt="Product" className="lg:w-4/5 w-full h-full rounded-xl object-contain" />
@@ -57,7 +59,7 @@ const ProductDetails = () => {
               Free delivery on order $100
             </div>
           </div>
-        </div>}
+        </div> : <div className="h-screen w-full	flex items-center justify-center"><Spinner/> </div>}
       </div>)
 }
 

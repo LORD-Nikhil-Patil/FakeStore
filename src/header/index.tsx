@@ -3,12 +3,18 @@ import React from "react";
 import {useHeader} from "./hooks";
 
 const Header = () => {
-   const {handleProductSearch} = useHeader();
+   const {handleProductSearch, goToCart} = useHeader();
     return (
         <header className='flex justify-between shadow-md py-2 px-1 sm:px-10 bg-white font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
             <a href='#' className='flex items-center '>Fake Store</a>
             <div className='flex '>
-                <button className='flex items-center m-2 p-3 rounded bg-slate-200 cursor-pointer' aria-pressed="false" role="navigation" aria-label='cart'>
+                <button 
+                className='flex items-center m-2 p-3 rounded bg-slate-200 cursor-pointer'
+                aria-pressed="false"
+                role="navigation"
+                aria-label='cart'
+                onClick={goToCart} 
+                >
                     <span className="material-symbols-outlined"    >
                         shopping_cart
                     </span>

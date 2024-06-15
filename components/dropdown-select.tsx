@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-export const DropDownSelect: React.FC<any> = ({ selected, options, handleSelect}) => {
-
-    const [open, isOpen] = useState(false)
-
-    useEffect(()=> {
-        handleToggle()
-    }, [selected])
-    
+export const DropDownSelect: React.FC<{ selected: string, options: string[], handleSelect: (option: string) => void }> = ({ selected, options, handleSelect }) => {
+    const [open, isOpen] = useState(false);
+    console.log("DropDownSelect")
     const handleToggle = () => {
         isOpen(!open)
     }
@@ -28,7 +23,10 @@ export const DropDownSelect: React.FC<any> = ({ selected, options, handleSelect}
 
         {open && <div className="absolute right-0 z-10 mt-2 w-30 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
             <div className="py-1" role="none">
-                {optionsHandler && optionsHandler().map((itm: string) => <div className="block px-4 py-2 text-sm text-gray-700" key={itm} onClick={() =>handleSelect(itm)} role="menuitem" id="menu-item-0">{itm}</div>)}
+                {optionsHandler && optionsHandler().map((itm: string) => <div className="block px-4 py-2 text-sm text-gray-700" key={itm} onClick={() =>{
+                    handleSelect(itm);
+                    handleToggle()
+                }} role="menuitem" id="menu-item-0">{itm}</div>)}
             </div>
         </div>}
     </div>)

@@ -13,6 +13,8 @@ export const useProductDetail = () => {
     const navigate = useNavigate();
 
     const product: Item | null = useAppSelector((state: RootState) => state.productDetailSlice.productDetail.data);
+    const productLoading: boolean = useAppSelector((state: RootState) => state.productDetailSlice.productDetail.status);
+
 
     const [products] = useState<cartProduct[]>(() => {
         const storedProducts = localStorage.getItem('products');
@@ -60,6 +62,8 @@ export const useProductDetail = () => {
 
     return {
         product,
+        productLoading,
+        
         addToCart,
         addProduct,
         removeProduct,
