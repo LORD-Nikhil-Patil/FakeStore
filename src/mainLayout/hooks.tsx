@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 import { fetchProductListAction, sortProductListAction, searchByCategoryAction } from "./actions"
@@ -12,6 +13,8 @@ export const useProductList = () => {
     const dispatch = useAppDispatch();
     const products: Item[] = useAppSelector((state: RootState) => state.productList.productList.data);
     const productsListLoading: boolean = useAppSelector((state: RootState) => state.productList.productList.status);
+    const productsListError: string | null = useAppSelector((state: RootState) => state.productList.productList.error);
+
     const searchedProduct: Item[] = useAppSelector((state: RootState) => state.productList.productList.searchData);
     const [sort, setSort] = useState<string>("desc");
     const [category, setCategory] = useState("select");
@@ -55,10 +58,10 @@ export const useProductList = () => {
             const params = {
                 sort: sort,
             };
-            dispatch(sortProductListAction(params));
+            dispatch(sortProductListAction(params))
             return
         }
-        dispatch(searchByCategoryAction(params));
+        dispatch(searchByCategoryAction(params))
     },  [dispatch, sort, products]);
 
     const handleProductDetail = useCallback((id: Number) => {
@@ -80,7 +83,12 @@ export const useProductList = () => {
         localStorage.setItem('products', JSON.stringify(products));
         navigate("cart")
     },[navigate])
-
+   
+    const handlePagination = () =>{
+        toast.error("Pagination API not available", {
+            position: "top-center"
+          });
+    }
     return {
         products,
         searchedProduct,
@@ -91,7 +99,8 @@ export const useProductList = () => {
         sortProductList,
         headleCateagrySelect,
         handleProductDetail,
-        addToCart
+        addToCart,
+        handlePagination
     }
 }
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, memo } from 'react';
 
-export const DropDownSelect: React.FC<{ selected: string, options: string[], handleSelect: (option: string) => void }> = ({ selected, options, handleSelect }) => {
+export const DropDownSelect: React.FC<{ selected: string, options: string[], handleSelect: (option: string) => void }> = memo(({ selected, options, handleSelect }) => {
     const [open, isOpen] = useState(false);
     console.log("DropDownSelect")
     const handleToggle = () => {
@@ -30,4 +30,4 @@ export const DropDownSelect: React.FC<{ selected: string, options: string[], han
             </div>
         </div>}
     </div>)
-}
+})
