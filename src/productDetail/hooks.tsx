@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { fetchProductDetailAction } from './action'
 import { Item, cartProduct } from "./types"

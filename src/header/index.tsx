@@ -1,5 +1,3 @@
-import React from "react";
-
 import {useHeader} from "./hooks";
 
 const Header = () => {
@@ -16,7 +14,7 @@ const Header = () => {
                 onClick={goToCart} 
                 >
                     <span className="material-symbols-outlined"    >
-                        shopping_cart
+                        shopping_cart   
                     </span>
                 </button>
                 <div className='flex items-center'>

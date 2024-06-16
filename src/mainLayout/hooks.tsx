@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,6 @@ export const useProductList = () => {
     const dispatch = useAppDispatch();
     const products: Item[] = useAppSelector((state: RootState) => state.productList.productList.data);
     const productsListLoading: boolean = useAppSelector((state: RootState) => state.productList.productList.status);
-    const productsListError: string | null = useAppSelector((state: RootState) => state.productList.productList.error);
 
     const searchedProduct: Item[] = useAppSelector((state: RootState) => state.productList.productList.searchData);
     const [sort, setSort] = useState<string>("desc");
