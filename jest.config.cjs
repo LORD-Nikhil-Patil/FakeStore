@@ -3,7 +3,7 @@ module.exports = {
       "^.+\\.jsx?$": "babel-jest",
       "^.+\\.tsx?$": "babel-jest"
     },
-    testEnvironment: "node",
-    moduleFileExtensions: ["js", "jsx", "ts", "tsx"]
+    moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
+    "testEnvironment": "jsdom"
   };
   
