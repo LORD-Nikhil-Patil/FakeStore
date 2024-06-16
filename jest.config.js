@@ -1,6 +1,7 @@
-module.exports = {
-    testEnvironment: 'jsdom',
-    moduleNameMapper: {
-      '\\.(css|less|scss)$': 'identity-obj-proxy',
+export default {
+    transform: {
+      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
     },
+    extensionsToTreatAsEsm: [".ts", ".tsx"],
   };
+
