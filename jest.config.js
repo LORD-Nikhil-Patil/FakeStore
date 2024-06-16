@@ -1,7 +1,9 @@
-export default {
+module.exports = {
     transform: {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "babel-jest"
     },
-    extensionsToTreatAsEsm: [".ts", ".tsx"],
+    testEnvironment: "node",
+    moduleFileExtensions: ["js", "jsx", "ts", "tsx"]
   };
-
+  
