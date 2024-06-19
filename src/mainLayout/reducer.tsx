@@ -10,11 +10,11 @@ import { Item } from "./types";
     error: string | null;
   }
 
-  interface ProductState {
+  export  interface ProductState {
     productList: productsListState;
   }
 
-const productsInitialState: ProductState = {
+ export const productsInitialState: ProductState = {
     productList: {
       status: true,
       data: [],
@@ -65,7 +65,7 @@ const productsInitialState: ProductState = {
           });
       },
   });
-  
+  export const filterDataAction = productSlice.actions.filterData;
   export default productSlice;
 
 

@@ -9,7 +9,7 @@ interface productsDetailState {
     error: string | null;
   }
 
-  interface ProductState {
+export interface ProductState {
     productDetail: productsDetailState;
   }
 
