@@ -1,7 +1,5 @@
 import { memo } from "react";
 import { ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-
 import { DropDownSelect } from "../../components/dropdown-select";
 import { ProductList } from "../../components/productList";
 import { Spinner } from "../../components/spinner"
@@ -13,7 +11,7 @@ const MainLayout = () => {
         searchedProduct,
         categorys,
         category,
-        productsListLoading,
+        productsListLoading, 
         sortProductList,
         headleCateagrySelect,
         handleProductDetail,
@@ -24,7 +22,7 @@ const MainLayout = () => {
     return (<>
         <main className="py-6 px-4 sm:p-6 md:py-10 md:px-8">
             <div className="flex justify-between ">
-                <button className='flex items-center p-4 bg-slate-200' onClick={sortProductList}>
+                <button className='flex items-center p-4 bg-slate-200' onClick={sortProductList} role="sort">
                     <span className="material-symbols-outlined">
                         sort
                     </span>
@@ -42,7 +40,7 @@ const MainLayout = () => {
             }
             <div className="flex items-center justify-center"> 
                 <nav aria-label="Page navigation example" >
-                    <ul className="inline-flex -space-x-px text-sm"  onClick={handlePagination}>
+                    <ul className="inline-flex -space-x-px text-sm"  onClick={handlePagination} role="pagination">
                         <li >
                             <a className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
                         </li>

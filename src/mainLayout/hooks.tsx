@@ -94,7 +94,7 @@ export const useProductList = () => {
         categorys,
         category,
         productsListLoading,
-
+        sort,
         sortProductList,
         headleCateagrySelect,
         handleProductDetail,

@@ -4,7 +4,7 @@ import axios from "../../api";
 import { Item } from "./types";
 
 export const fetchProductListAction = createAsyncThunk<Item[], void, { rejectValue: string }>(
-    'product/productListLoading',
+    'product/productList',
     async (_, { rejectWithValue }) => {
         try {
             const response = await axios.get('products');
@@ -16,7 +16,7 @@ export const fetchProductListAction = createAsyncThunk<Item[], void, { rejectVal
 );
 
 export const sortProductListAction = createAsyncThunk<Item[], {sort: string}, { rejectValue: string }>(
-    'product/productListLoading',
+    'product/productList',
     async ({sort}, { rejectWithValue }) => {
         try {
             const response = await axios.get('products', {params: {sort}});
@@ -28,7 +28,7 @@ export const sortProductListAction = createAsyncThunk<Item[], {sort: string}, { 
 );
 
 export const searchByCategoryAction = createAsyncThunk<Item[], {category: string, sort: string}, { rejectValue: string }>(
-    'product/productListLoading',
+    'product/productList',
     async ({category, sort}, { rejectWithValue }) => {
         try {
             const response = await axios.get(`products/category/${category}`, {params: {sort}});
